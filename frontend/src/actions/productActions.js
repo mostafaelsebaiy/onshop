@@ -20,7 +20,7 @@ import {
   PRODUCT_DELETE_REVIEW_REQUEST,
   PRODUCT_DELETE_REVIEW_SUCCESS,
   PRODUCT_DELETE_REVIEW_FAIL,
-  // PRODUCT_DELETE_REVIEW_RESET,
+
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL,
@@ -34,7 +34,7 @@ export const getListProduct =
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
       const { data } = await axios.get(
-        `http://localhost:5000/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       );
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
@@ -52,7 +52,7 @@ export const getDetailsProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
     const { data } = await axios.get(
-      `http://localhost:5000/api/products/${id}`
+      `/api/products/${id}`
     );
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -81,7 +81,7 @@ export const deleteMyProduct = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(`http://localhost:5000/api/products/${id}`, config);
+    await axios.delete(`/api/products/${id}`, config);
 
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
@@ -113,7 +113,7 @@ export const createProduct = () => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:5000/api/products`,
+      `/api/products`,
       {},
       config
     );
@@ -151,7 +151,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:5000/api/products/${product._id}`,
+      `/api/products/${product._id}`,
       product,
       config
     );
@@ -195,7 +195,7 @@ export const deleteProductReview =
       };
 
       await axios.delete(
-        `http://localhost:5000/api/products/${productId}/review`,
+        `/api/products/${productId}/review`,
         config
       );
 
@@ -236,7 +236,7 @@ export const createProductReview =
       };
 
       await axios.post(
-        `http://localhost:5000/api/products/${productId}/review`,
+        `/api/products/${productId}/review`,
         review,
         config
       );
@@ -263,7 +263,7 @@ export const listTopProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:5000/api/products/top`);
+    const { data } = await axios.get(`/api/products/top`);
 
     dispatch({
       type: PRODUCT_TOP_SUCCESS,
