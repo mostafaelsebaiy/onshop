@@ -2,7 +2,7 @@
 
  to run application
   first run in root folder  npm install
-  npm run dev
+  then npm run dev
  you can find it on production https://onshop125.herokuapp.com/ 
  
 > eCommerce platform built with the MERN stack & Redux.
